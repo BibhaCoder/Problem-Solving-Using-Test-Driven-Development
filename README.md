@@ -1,3 +1,3 @@
 # Problem-Solving-Using-Test-Driven-Development
 
-This project consists of various computing problem solvings using test driven development using C programming language
+This project consists of various computing problems solving using test driven development using The C programming language.

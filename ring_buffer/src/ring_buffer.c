@@ -1,4 +1,3 @@
-#include "/Unity/src/unity.h"
 #include "../inc/ring_buffer.h"
 #include <stddef.h>
 

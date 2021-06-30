@@ -196,20 +196,20 @@ static void test_valid_lru_cache_random_add(void)
 	print_lru_cache();
 }
 
-static void test_valid_lru_cache_add_and_find(void)
+static void test_valid_lru_cache_add_and_find_100_billion_nodes(void)
 {
 	size_t i;
 	size_t recent_key = 0;
 	int32_t recent_val = 0;
 	struct lru_cache *item;
 
-	for (i = 0; i < 100000; i++) {
+	for (i = 0; i < 100000000000; i++) {
 		recent_key = i % MAX_ITEM_KEY;
 		recent_val = rand();
 		TEST_ASSERT_EQUAL_INT(0, add_item(recent_key, recent_val));
 	}
 
-	for (i = 0; i < 100000; i++) {
+	for (i = 0; i < 100000000000; i++) {
 		recent_key = i % MAX_ITEM_KEY;
 		find_item(recent_key);
 	}
@@ -251,7 +251,7 @@ int main()
 
 	RUN_TEST(test_valid_destroy_lru_cache);
 
-	RUN_TEST(test_valid_lru_cache_add_and_find);
+	RUN_TEST(test_valid_lru_cache_add_and_find_100_billion_nodes);
 
 	RUN_TEST(test_valid_destroy_lru_cache);
 

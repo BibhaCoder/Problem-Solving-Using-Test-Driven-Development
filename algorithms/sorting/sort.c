@@ -421,10 +421,9 @@ int main(int argc, char **argv)
 		is_print_enabled = true;
 
 	run_sort_test(n);
-#if 0
+	
 	shuffle_sorted_output(input, n);
 	perform_binary_search(n);
-#endif
 
 	return 0;
 }

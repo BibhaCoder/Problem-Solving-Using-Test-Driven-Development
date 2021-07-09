@@ -34,6 +34,10 @@ static void test_floating_point_limit_4(void)
 {
 	float const limit = 2e7;
 	float i;
+	float index = 1.0;
+
+	for (i = 0; i < 2e7; i++)
+		printf("index is %f\n", index++);
 
 	for (i = limit - 10; i < limit; i += 1.0)
 		printf("i is %f and limit is %f\n", i, limit);

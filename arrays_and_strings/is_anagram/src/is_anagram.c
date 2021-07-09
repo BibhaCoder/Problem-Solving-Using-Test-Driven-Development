@@ -83,7 +83,7 @@ static bool __is_anagram(ssize_t const *char_map)
 	return true;
 }
 
-static bool is_string_a_permutation(char const *s, char const *t)
+static bool is_string_an_anagram(char const *s, char const *t)
 {
 	ssize_t char_map[MAX_UNIQUE_ASCII_CHARS] = {0, };
 
@@ -96,7 +96,7 @@ static bool is_string_a_permutation(char const *s, char const *t)
 	return __is_anagram(char_map);
 }
 
-static bool is_string_a_permutation_optimized(char const *s, char const *t)
+static bool is_string_an_anagram_optimized(char const *s, char const *t)
 {
 	size_t i;
 	int index;
@@ -128,5 +128,5 @@ bool is_anagram(char const *s, char const *t)
 	if (!is_input_string_valid(t))
 		return false;
 
-	return is_string_a_permutation_optimized(s, t);
+	return is_string_an_anagram_optimized(s, t);
 }

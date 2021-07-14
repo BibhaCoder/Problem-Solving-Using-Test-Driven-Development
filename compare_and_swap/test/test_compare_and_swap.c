@@ -36,6 +36,11 @@ static void test_valid_input_3_compare_and_swap(void)
 	TEST_ASSERT_EQUAL_INT(100, add(50, 50));
 }
 
+static void test_valid_input_4_compare_and_swap(void)
+{
+	TEST_ASSERT_EQUAL_INT(66666, add(12345, 54321));
+}
+
 int main()
 {
 	UNITY_BEGIN();
@@ -44,6 +49,7 @@ int main()
 	RUN_TEST(test_valid_input_1_compare_and_swap);
 	RUN_TEST(test_valid_input_2_compare_and_swap);
 	RUN_TEST(test_valid_input_3_compare_and_swap);
+	RUN_TEST(test_valid_input_4_compare_and_swap);
 
 	UNITY_END();
 

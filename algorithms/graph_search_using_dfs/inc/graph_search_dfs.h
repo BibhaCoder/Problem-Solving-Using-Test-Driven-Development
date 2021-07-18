@@ -1,3 +1,8 @@
+/*  
+ * Copyright (c) 2017 BibhaCoder(bibha.rajeev.2011@gmail.com). All rights reserved.  
+ * Licensed under the MIT License. See MIT license for full license information.  
+ */
+
 #include <stdio.h>
 #define MAX_VERTICES_IN_GRAPH (10)
 

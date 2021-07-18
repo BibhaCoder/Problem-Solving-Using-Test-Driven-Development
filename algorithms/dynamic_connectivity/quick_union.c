@@ -1,3 +1,8 @@
+/*  
+ * Copyright (c) 2017 BibhaCoder. All rights reserved.  
+ * Licensed under the MIT License. See MIT license for full license information.  
+ */
+
 #include <stdio.h>
 #include <stdint.h>
 #include <stdbool.h>

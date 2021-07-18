@@ -1,5 +1,5 @@
 /*  
- * Copyright (c) 2017 BibhaCoder. All rights reserved.  
+ * Copyright (c) 2017 BibhaCoder(bibha.rajeev.2011@gmail.com). All rights reserved.  
  * Licensed under the MIT License. See MIT license for full license information.  
  */
 

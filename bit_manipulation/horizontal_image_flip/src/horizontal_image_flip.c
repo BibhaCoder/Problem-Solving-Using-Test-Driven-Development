@@ -1,3 +1,9 @@
+/*
+ * Copyright (c) 2017 BibhaCoder(https://github.com/BibhaCoder). All rights reserved.
+ *
+ * Licensed under the MIT License. See MIT license for full license information.
+ */
+
 #include "../inc/horizontal_image_flip.h"
 #include <stdbool.h>
 #include <limits.h>

@@ -122,7 +122,7 @@ static void test_fib_valid_input_53(void)
 static void test_fib_valid_input_64(void)
 {
 	uint64_t n = 64;
-	uint64_t const expected_output = 10610209857724;
+	uint64_t const expected_output = 10610209857723;
 
 	TEST_ASSERT_EQUAL_UINT64(expected_output, fib(n));
 }

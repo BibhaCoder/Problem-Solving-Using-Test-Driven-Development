@@ -7,7 +7,7 @@
 #include "../inc/fib.h"
 
 /*
- * poo design:
+ * very poor design:
  * runtime: O(2 ^ N)
  * space: O(N)
  */

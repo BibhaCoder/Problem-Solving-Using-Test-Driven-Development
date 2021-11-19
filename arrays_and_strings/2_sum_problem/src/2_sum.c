@@ -15,7 +15,7 @@
  *
  * Solution 2: using sorting and 2 pointers(left and right)
  * Input can be sorted in O(NlogN) and usin 2 pointers left and right
- * pairs can be constructed in O(N). Total runtime of O(MNlogN)
+ * pairs can be constructed in O(N). Total runtime of O(NlogN)
  */
 
 static int32_t __two_sum(uint32_t *array, size_t size, uint32_t sum)

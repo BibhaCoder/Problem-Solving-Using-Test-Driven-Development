@@ -14,7 +14,7 @@
  *
  *
  * Solution 2: using sorting and 2 pointers(left and right)
- * Input can be sorted in O(NlogN) and usin 2 pointers left and right
+ * Input can be sorted in O(NlogN) and using 2 pointers left and right
  * pairs can be constructed in O(N). Total runtime of O(NlogN)
  */
 

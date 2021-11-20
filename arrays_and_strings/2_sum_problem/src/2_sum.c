@@ -21,15 +21,13 @@
 static int32_t __two_sum(uint32_t *array, size_t size, uint32_t sum)
 {
 	size_t i;
-	int32_t missing_pair;
+	uint32_t missing_pair;
 	int32_t total_two_sum_pairs = 0;
 	bool hash_map[MAX_INT_SIZE + 1] =  {0, };
 
 	for (i = 0; i < size; i++) {
 		missing_pair = sum - array[i];
 		if (missing_pair > MAX_INT_SIZE)
-			continue;
-		if (missing_pair < 0)
 			continue;
 		if (hash_map[missing_pair]) {
 			total_two_sum_pairs++;

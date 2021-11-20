@@ -18,7 +18,11 @@
  * pairs can be constructed in O(N). Total runtime of O(NlogN)
  *
  * Solution 3: generate all possible pairs and check their sum is equal
- * to given sum. Very inefficient quadratic algorithm. Total runtime O(N^2). 
+ * to given sum. Very inefficient quadratic algorithm. Example:
+ * for ( i = 0; i < size; i++)
+ *     for (j = i + 1; j < size; j++)
+ *
+ * Total runtime O(N^2).
  */
 
 static int32_t __two_sum(uint32_t *array, size_t size, uint32_t sum)

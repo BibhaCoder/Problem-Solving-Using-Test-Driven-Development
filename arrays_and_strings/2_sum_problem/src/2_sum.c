@@ -16,6 +16,9 @@
  * Solution 2: using sorting and 2 pointers(left and right)
  * Input can be sorted in O(NlogN) and using 2 pointers left and right
  * pairs can be constructed in O(N). Total runtime of O(NlogN)
+ *
+ * Solution 3: generate all possible pairs and check their sum is equal
+ * to given sum. Very inefficient quadratic algorithm. Total runtime O(N^2). 
  */
 
 static int32_t __two_sum(uint32_t *array, size_t size, uint32_t sum)

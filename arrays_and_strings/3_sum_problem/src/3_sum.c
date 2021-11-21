@@ -25,7 +25,7 @@ static int32_t __three_sum(int32_t *array, size_t size, int32_t sum)
 	size_t i, left, right;
 	int32_t temp_sum, total_three_sum_triplets = 0;
 
-	for (i = 0; i < size; i++) {
+	for (i = 0; i < size - 1; i++) {
 		left = i + 1;
 		right = size - 1;
 		while (left < right) {

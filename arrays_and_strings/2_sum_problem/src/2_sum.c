@@ -19,7 +19,7 @@
  *
  * Solution 3: generate all possible pairs and check their sum is equal
  * to given sum. Very inefficient quadratic algorithm. Example:
- * for ( i = 0; i < size; i++)
+ * for (i = 0; i < size - 1; i++)
  *     for (j = i + 1; j < size; j++)
  *
  * Total runtime O(N^2).

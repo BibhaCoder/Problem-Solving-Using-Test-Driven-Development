@@ -1,3 +1,7 @@
+/*
+ * Copyright (c) 2017 BibhaCoder(https://github.com/BibhaCoder). All rights reserved.
+ */
+
 #include <stdio.h>
 #include <stdint.h>
 #include "../inc/bitcount.h"

@@ -5,7 +5,3 @@ This project consists of various computing problems solving using test driven de
  *
  * Copyright (c) 2017 BibhaCoder(https://github.com/BibhaCoder). All rights reserved.
  *
- * Licensed under the MIT License. See MIT license for full license information.
- *
- 
-* MIT license: https://en.wikipedia.org/wiki/MIT_License

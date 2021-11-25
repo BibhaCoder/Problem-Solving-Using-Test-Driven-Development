@@ -4,10 +4,10 @@
  
  /**
   * Solution 1: generate all 4 memebrs subarray and check if their sum is equal to given sum
-  * for (i = 0; i < num; i++)
-  *    for (j = i + 1; j < num - 1; j++)
-  *         for (k = j + 1; k < num - 2; k++)
-  *                for (l =  k + 1; l < num - 3; l++)
+  * for (i = 0; i < num - 3; i++)
+  *    for (j = i + 1; j < num - 2; j++)
+  *         for (k = j + 2; k < num - 1; k++)
+  *                for (l =  k + 3; l < num; l++)
   *                     check if a[i] + a[j] + a[k] + a[l] == given_sum
   * Runtime : O(N ^ 4)
   *

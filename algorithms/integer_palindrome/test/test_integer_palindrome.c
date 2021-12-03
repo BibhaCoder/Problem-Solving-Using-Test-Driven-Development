@@ -36,6 +36,9 @@ static void is_integer_palindrome_input_3(void)
 	TEST_ASSERT_FALSE(is_integer_palindrome(10));
 	TEST_ASSERT_FALSE(is_integer_palindrome(2147483647));
 	TEST_ASSERT_FALSE(is_integer_palindrome(-2147483648));
+	
+	TEST_ASSERT_FALSE(is_integer_palindrome(1000000003));
+	TEST_ASSERT_FALSE(is_integer_palindrome(-1000000003));
 }
 
 int main()

@@ -56,6 +56,8 @@ static char *compress_string(char const *s)
 
 	input_len = strlen(s);
 	output_len = input_len << 1;
+	/* 1 extra byte for null termiator */
+	output_len += 1;
 	output_string = malloc(output_len);
 	if (!output_string) {
 		printf("failed to allocate memory for size %zu\n",

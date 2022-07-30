@@ -77,3 +77,10 @@ Approach 2:
 
 Pre allocate and cache fixed size chunks to serve various members size equal or smaller than bin size
 For large allocations use system allocator by using system calls.
+For example;
+pool_128: serves all allocations of size <= 128 bytes
+pool_256: serves all allocations of size <= 256 bytes 
+pool_512: serves all allocations of size <= 512 bytes 
+pool_1024: serves all allocations of size <= 1024 bytes 
+pool_extra_large: al allocations of size > 1024 bytes are served via system calls directly 
+

@@ -75,5 +75,5 @@ Do not preallocate fixed size bins and use small, medium, large and extra large 
 
 Approach 2:
 
-Pre allocate fixed size chunks to serve various members size equal or smaller than bin size
+Pre allocate and cache fixed size chunks to serve various members size equal or smaller than bin size
 For large allocations use system allocator by using system calls.

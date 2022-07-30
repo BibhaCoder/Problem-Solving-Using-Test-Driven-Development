@@ -133,10 +133,10 @@ void free(void *addr)
  *
  * For large allocations use system allocator by using system calls.
  * For example;
- * struct memory_meta_data = pool_128[4096]; serves all allocations of size <= 128 bytes
- * struct memory_meta_data = pool_256[2048]; serves all allocations of size <= 256 bytes 
- * struct memory_meta_data = pool_512[1024]; serves all allocations of size <= 512 bytes 
- * struct memory_meta_data = pool_1024[512]; serves all allocations of size <= 1024 bytes 
+ * struct memory_meta_data pool_128[4096]; serves all allocations of size <= 128 bytes
+ * struct memory_meta_data pool_256[2048]; serves all allocations of size <= 256 bytes 
+ * struct memory_meta_data pool_512[1024]; serves all allocations of size <= 512 bytes 
+ * struct memory_meta_data pool_1024[512]; serves all allocations of size <= 1024 bytes 
  * pool_extra_large: al allocations of size > 1024 bytes are served via system calls directly.
  *
  *

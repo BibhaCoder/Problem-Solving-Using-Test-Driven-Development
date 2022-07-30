@@ -5,7 +5,7 @@
 /*
  * Approach 1: Without PRE-ALLOCATION
  *
- * Do not preallocate fixed size bins and use small, medium, large and extra large hash bins
+ * Do not preallocate fixed size bins and use small, medium, large and extra large size based hash memory bins
  *
  * Create 4 separate bin of memory pools to avoid too many system calls
  *

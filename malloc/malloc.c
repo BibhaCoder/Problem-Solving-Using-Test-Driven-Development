@@ -18,7 +18,11 @@
  *
  * All memory allication request is allocated as usual from system but at the time of free its stored in cashed_hash_bin by directly using
  * size as index in cached_hash_bin.
- * /
+ *
+ * Also having a periodic memory deamon thread running to check and trim the total cached bin based on total cached bin size to avoid hogging
+ * system memory.
+ *
+ */
   
 struct memory_meta_data {
        size_t size;
@@ -35,7 +39,11 @@ struct memory_bin {
  
 #define MAX_HASH_BIN_SIZE (1024)
 struct memory_bin *cached_hash_bin[MAX_HASH_BIN_SIZE];
- 
+
+
+struct memory_meta_data *delete_from_head_of_hash_bin(struct memory_bin *bin);
+void add_to_head_of_bash_bin(struct memory_bin *bin, struct memory_meta_data *mem);
+
 /*
  * In cached_hash_bin all 3 bins of memory : small, medium and large are hashed by their size index
  * for example:
@@ -54,8 +62,10 @@ void *malloc(size_t size)
     size_t new_size;
     struct memory_meta_data *mem;
 
-    if (!size)
+    if (!size) {
+            assert(0);
             return NULL;
+     }
 
     if (size > MAX_HASH_BIN_SIZE) {
             /* its extra large request and not served by cashed hash bin
@@ -69,7 +79,7 @@ void *malloc(size_t size)
 
      /* Look up in O(1) in corresponding cached hash bin directly using input size as index */
      if (cached_hash_bin[size]) {
-            mem = delete_head_from_hash_bin(cached_hash_bin[size]); 
+            mem = delete_from_head_of_hash_bin(cached_hash_bin[size]); 
      } else {
             mem = alloc(new_size);
             if (!mem)
@@ -86,26 +96,45 @@ void *malloc(size_t size)
 
 void free(void *addr) 
 {
-    get size from meta data of addr;
-    size = get_size_from_meta_header(addr);
-    if (size > MAX_HASH_BIN_SIZE) {
-        its extra large request return it to system via free system call;
+      struct memory_meta_data *mem;
+
+      if (!addr) {
+             assert(0);
+             return;
+      }
+
+      mem = container_of(addr, struct memory_meta_data, addr);
+      if (!mem) {
+             assert(0);
+             return;
+      }
+
+      size = mem->size;
+      if (size > MAX_HASH_BIN_SIZE) {
+            return free(mem);
+       } else {
+             assert(mem->header != 0xdeaddead);
+             assert(mem->footer != 0xdeaddead);
+             add_to_head_of_bash_bin(cached_hash_bin[size], mem);
+       }
+
        return;
-   } else {
-       add_in_hash_bin(cached_hash_bin[size], addr);
- 
-   }
  }
 
 
-Approach 2: PRE-ALLOCATION
-
-Pre allocate and cache fixed size chunks to serve various members size equal or smaller than bin size
-For large allocations use system allocator by using system calls.
-For example;
-pool_128: serves all allocations of size <= 128 bytes
-pool_256: serves all allocations of size <= 256 bytes 
-pool_512: serves all allocations of size <= 512 bytes 
-pool_1024: serves all allocations of size <= 1024 bytes 
-pool_extra_large: al allocations of size > 1024 bytes are served via system calls directly 
+/*
+ * Approach 2: PRE-ALLOCATION
+ *
+ * Pre allocate and cache fixed size chunks to serve various members size equal or smaller than bin size.
+ * For example 128 bytes pool serves all memory allocations of size <= 128, like 40, 60, 100, 20 etc.
+ * Fixed size pools avoids memory look up overhead.
+ *
+ * For large allocations use system allocator by using system calls.
+ * For example;
+ * struct memory_meta_data = pool_128[4096]; serves all allocations of size <= 128 bytes
+ * struct memory_meta_data = pool_256[2048]; serves all allocations of size <= 256 bytes 
+ * struct memory_meta_data = pool_512[1024]; serves all allocations of size <= 512 bytes 
+ * struct memory_meta_data = pool_1024[512]; serves all allocations of size <= 1024 bytes 
+ * pool_extra_large: al allocations of size > 1024 bytes are served via system calls directly 
+ */
 

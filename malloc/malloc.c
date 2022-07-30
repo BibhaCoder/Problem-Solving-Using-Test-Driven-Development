@@ -125,7 +125,7 @@ void free(void *addr)
 
 
 /*
- * Approach 2: PRE-ALLOCATION
+ * Approach 2: With PRE-ALLOCATION
  *
  * Pre allocate and cache fixed size chunks to serve various members size equal or smaller than bin size.
  * For example 128 bytes pool serves all memory allocations of size <= 128, like 40, 60, 100, 20 etc.

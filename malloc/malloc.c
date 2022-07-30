@@ -140,7 +140,7 @@ void free(void *addr)
  * pool_extra_large: al allocations of size > 1024 bytes are served via system calls directly.
  *
  *
- * Pros: Extremely fast as there is no look up overhead and very simple approach(no hash table management).
+ * Pros: Extremely fast as there is no look up overhead and very simple implementation(no hash table management).
  * Cons: Consumes more memory and gives more memory than requested.
  */
 

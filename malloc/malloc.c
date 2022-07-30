@@ -2,6 +2,10 @@
  * Copyright (c) 2017 BibhaCoder(https://github.com/BibhaCoder). All rights reserved.
  */
 
+Approach 1:
+
+Do not preallocate fixed size bins and use small, medium, large and extra large hash bins
+
 /* Create 4 separate bin of memory pools to avoid too many system calls
  *
  * Hash table based bins are used to avoid linear search and find the item from free cashed memory bin in O(1).
@@ -68,3 +72,8 @@
  *   }
  * }
  */
+
+Approach 2:
+
+Pre allocate fixed size chunks to serve various members size equal or smaller than bin size
+For large allocations use system allocator by using system calls.

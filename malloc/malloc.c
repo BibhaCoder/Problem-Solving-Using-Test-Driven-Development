@@ -22,6 +22,8 @@
  * Also having a periodic memory deamon thread running to check and trim the total cached bin based on total cached bin size to avoid hogging
  * system memory.
  *
+ * Pros: Extremely fast as there is no look up overhead 
+ * Cons: Consumes more memory and complexity of hash table management 
  */
   
 struct memory_meta_data {
@@ -135,6 +137,10 @@ void free(void *addr)
  * struct memory_meta_data = pool_256[2048]; serves all allocations of size <= 256 bytes 
  * struct memory_meta_data = pool_512[1024]; serves all allocations of size <= 512 bytes 
  * struct memory_meta_data = pool_1024[512]; serves all allocations of size <= 1024 bytes 
- * pool_extra_large: al allocations of size > 1024 bytes are served via system calls directly 
+ * pool_extra_large: al allocations of size > 1024 bytes are served via system calls directly.
+ *
+ *
+ * Pros: Extremely fast as there is no look up overhead and very simple approach(no hash table management).
+ * Cons: Consumes more memory and gives more memory than requested.
  */
 

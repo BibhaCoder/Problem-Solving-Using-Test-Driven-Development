@@ -35,8 +35,8 @@ struct memory_meta_data {
 
 
 struct memory_bin {
-       struct memory_meta_data *mem;
        struct memory_bin *next;
+       struct memory_meta_data *mem;
 };
  
 #define MAX_HASH_BIN_SIZE (1024)

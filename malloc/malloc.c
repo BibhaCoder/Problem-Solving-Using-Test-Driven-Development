@@ -30,7 +30,7 @@ struct memory_meta_data {
        size_t size;
        uint32_t header;
        void *addr;
-       uint32_t footer;
+       /* uint32_t trailer = (uint8_t *)addr + size */
 }
 
 
@@ -62,6 +62,7 @@ void add_to_head_of_bash_bin(struct memory_bin *bin, struct memory_meta_data *me
 void *malloc(size_t size)
 {
     size_t new_size;
+    uint32_t *trailer;
     struct memory_meta_data *mem;
 
     if (!size) {
@@ -89,7 +90,8 @@ void *malloc(size_t size)
 
             mem->size = size;
             mem->header = 0xdeaddead;
-            mem->footer = 0xdeaddead;
+            trailer = (uint8_t *)mem->addr + size;
+            *trailer = 0xdeaddead;
             add_to_head_of_bash_bin(cached_hash_bin[size], mem);
      }
 
@@ -98,6 +100,7 @@ void *malloc(size_t size)
 
 void free(void *addr) 
 {
+      uint32_t *trailer;
       struct memory_meta_data *mem;
 
       if (!addr) {
@@ -115,8 +118,9 @@ void free(void *addr)
       if (size > MAX_HASH_BIN_SIZE) {
             return free(mem);
        } else {
+             trailer = (uint8_t *)mem->addr + size;
              assert(mem->header != 0xdeaddead);
-             assert(mem->footer != 0xdeaddead);
+             assert((*trailer) != 0xdeaddead);
              add_to_head_of_bash_bin(cached_hash_bin[size], mem);
        }
 

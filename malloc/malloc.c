@@ -4,6 +4,7 @@
 
 /*
  * Approach 1: Without PRE-ALLOCATION
+ * Runtime: O(1) [ because of hash map size index based look ups]
  *
  * Do not preallocate fixed size bins and use small, medium, large and extra large size based hash memory bins
  *
@@ -130,7 +131,7 @@ void free(void *addr)
 
 /*
  * Approach 2: With PRE-ALLOCATION
- *
+ * Runtime: O(1): [because of fixed size bins there is no look up overhead needed]
  * Pre allocate and cache fixed size chunks to serve various members size equal or smaller than bin size.
  * For example 128 bytes pool serves all memory allocations of size <= 128, like 40, 60, 100, 20 etc.
  * Fixed size pools avoids memory look up overhead.
@@ -147,4 +148,19 @@ void free(void *addr)
  * Pros: Extremely fast as there is no look up overhead and very simple implementation(no hash table management).
  * Cons: Consumes more memory and gives more memory than requested.
  */
+ 
+/*
+ * Approach 3: Without PRE-ALLOCATION
+ * Runtime: O(logN): [Using BST(binary search teee) to store free nodes and look up free nodes for new allocations]
+ *
+ * Upto a certain size(4k) store all freed memory in a binary  search tree(BST) for O(logN) based look up.
+ */
+
+/*
+ * Approach 4: Without PRE-ALLOCATION
+ * Runtime: O(logN): [Using RBT(red black teee) to store free nodes and gauranteed look up in O(logN) free nodes for new allocations]
+ *
+ * Upto a certain size(4k) store all freed memory in a specialized binary search tree called red black tree (RBT) for gauranteed O(logN) based look up.
+ */
+
 

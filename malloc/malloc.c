@@ -151,7 +151,8 @@ void free(void *addr)
  
 /*
  * Approach 3: Without PRE-ALLOCATION
- * Runtime: O(logN): [Using BST(binary search teee) to store free nodes and look up free nodes for new allocations]
+ * Runtime: O(logN): [Using BST(binary search teee) to store free nodes and look up free nodes for new allocations].
+ * Worst case runtme of O(N) if memory is always freed in increasing or decreasing order of size.
  *
  * Upto a certain size(4k) store all freed memory in a binary  search tree(BST) for O(logN) based look up.
  *

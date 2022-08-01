@@ -154,6 +154,8 @@ void free(void *addr)
  * Runtime: O(logN): [Using BST(binary search teee) to store free nodes and look up free nodes for new allocations]
  *
  * Upto a certain size(4k) store all freed memory in a binary  search tree(BST) for O(logN) based look up.
+ *
+ * For allocations >= 4k use system call directly considering these large allocations are rare or adjust this 4k threshold.
  */
 
 /*
@@ -161,6 +163,8 @@ void free(void *addr)
  * Runtime: O(logN): [Using RBT(red black teee) to store free nodes and gauranteed look up in O(logN) free nodes for new allocations]
  *
  * Upto a certain size(4k) store all freed memory in a specialized binary search tree called red black tree (RBT) for gauranteed O(logN) based look up.
+ *
+ * For allocations >= 4k use system call directly considering these large allocations are rare or adjust this 4k threshold. 
  */
 
 

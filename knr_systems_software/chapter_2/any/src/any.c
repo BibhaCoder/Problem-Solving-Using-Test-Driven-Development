@@ -62,6 +62,7 @@ static bool is_char_found_in_string(char c, char const *s, ssize_t *pos)
 	return false;
 }
 
+/* Bad solution: O(N^2) */
 static ssize_t any_search(char const *s, char const *t)
 {
 	size_t i;
@@ -109,6 +110,7 @@ static bool is_char_present_in_hash_map(struct char_map const *map, char c,
 	}
 }
 
+/* Best solution: O(N) */
 static ssize_t any_search_using_char_hash_map(char const *s, char const *t)
 {
 	size_t i;

@@ -8,7 +8,7 @@
 #include <time.h>
 
 #define MAX_HASH_TABLE_SIZE (16)
-#define INPUT_TIMES (1)
+#define INPUT_TIMES (2)
 
 struct hash_table {
 	uint32_t val;
@@ -78,7 +78,8 @@ static void generate_hash_input(void)
 	srand((unsigned) time(&t));
 
 	for (i = 0; i < (INPUT_TIMES * MAX_HASH_TABLE_SIZE); i++) {
-		val = rand() % MAX_HASH_TABLE_SIZE;
+		val = rand();
+		val &= ((INPUT_TIMES * MAX_HASH_TABLE_SIZE) - 1);
 		install(val);
 	}
 }

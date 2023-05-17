@@ -7,7 +7,7 @@
 #include <stdlib.h>
 #include <time.h>
 
-#define MAX_HASH_TABLE_SIZE (10)
+#define MAX_HASH_TABLE_SIZE (16)
 #define INPUT_TIMES (1)
 
 struct hash_table {
@@ -19,7 +19,7 @@ static struct hash_table *hash_map[MAX_HASH_TABLE_SIZE] = {NULL, };
 
 static uint32_t hash(uint32_t key)
 {
-	return (key % MAX_HASH_TABLE_SIZE);
+	return (key & (MAX_HASH_TABLE_SIZE - 1));
 }
 
 static struct hash_table *lookup(uint32_t key)

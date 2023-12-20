@@ -35,7 +35,7 @@ static void print_list(void)
 		printf("[%u]-->", node->val);
 		node = node->next;
 	}
-	printf("NULL\n");
+	printf("%p\n", NULL);
 }
 
 static void delete_node(uint32_t val)

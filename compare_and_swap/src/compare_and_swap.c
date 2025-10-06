@@ -4,7 +4,7 @@
 
 #include "../inc/compare_and_swap.h"
 
-int compare_and_swap(int32_t *ref, int32_t old_val, int32_t new_val)
+int compare_and_swap(int32_t volatile *ref, int32_t old_val, int32_t new_val)
 {
 	if (!ref)
 		return -1;

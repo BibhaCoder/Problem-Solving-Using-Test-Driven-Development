@@ -24,10 +24,10 @@
  * Col 3
  * PortB.3
  * const char key_map[4][4] = {
- *   { '1', '2', '3', 'A' },
- *   { '4', '5', '6', 'B' },
- *   { '7', '8', '9', 'C' },
- *   { '*', '0', '#', 'D' }
+ *   { '0', '1', '2', '3' },
+ *   { '4', '5', '6', '6' },
+ *   { '7', '8', '9', 'A' },
+ *   { 'B', 'C', 'D', 'E' }
  * };
  * 🔷 Basic Working Principle
  * Rows → Outputs
@@ -68,32 +68,6 @@
  *       key = lookup_table[row][col]
  *   }
  *}
- * 🔷 Key Mapping Example
- *
- * C0
- * C1
- * C2
- * C3
- * R0
- * 1
- * 2
- * 3
- * A
- * R1
- * 4
- * 5
- * 6
- * B
- * R2
- * 7
- * 8
- * 9
- * C
- * R3
- * *
- * 0
- * #
- * D
  * 🔷 Important Design Notes
  * ✅ Debouncing
  * Mechanical keys bounce for ~5–20 ms. Add:

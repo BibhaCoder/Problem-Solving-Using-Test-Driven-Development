@@ -13,7 +13,7 @@
  * 2) RT thread: High priority threads which processes real time sensor
  * 3) Non-RT thread: Low priority thread which processes non real time sensor on best effort basis.
  *
- * Only 1 interrupt from both thr sensors to avoid interrupt strom.
+ * Only 1 interrupt from both the sensors to avoid interrupt strom.
  * All 3 threads are bottom halves.
  * Highest priority DMA thread is the only caller of non-thread safe DMA API and copies sensors data to their respective ring buffers and schedule both RT and non-RT thread to run.
  * RT thread processes RT ring buffers and meets scheduling KPIs.

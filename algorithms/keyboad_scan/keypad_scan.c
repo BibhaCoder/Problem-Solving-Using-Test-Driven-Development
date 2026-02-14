@@ -23,6 +23,12 @@
  * PortB.2
  * Col 3
  * PortB.3
+ * const char key_map[4][4] = {
+ *   { '1', '2', '3', 'A' },
+ *   { '4', '5', '6', 'B' },
+ *   { '7', '8', '9', 'C' },
+ *   { '*', '0', '#', 'D' }
+ * };
  * 🔷 Basic Working Principle
  * Rows → Outputs
  * Columns → Inputs with pull-up resistors
@@ -109,36 +115,59 @@
  * uint16_t data style is good enough to store all 16 inputs
 */
 
-#define MAX_GPIOS (4)
+#include <stdint.h>
 
+#define MAX_GPIOS 4
+
+/* Port identifiers */
 enum port {
-    INPUT_PORT,
-    OUTPUT_PORT,
+    INPUT_PORT,     /* Columns  */
+    OUTPUT_PORT     /* Rows     */
 };
 
+/* Hardware abstraction functions (to be implemented per MCU) */
+void set_gpio(enum port p, uint8_t pin, uint8_t value);
+uint8_t gpio_read(enum port p, uint8_t pin);
+void delay_us(uint16_t us);
+
+/**
+ * scan_keypad()
+ * 
+ * Scans a 4x4 matrix keypad.
+ * Returns:
+ *   16-bit value where each bit represents a key.
+ *   Bit position = row * 4 + column
+ *
+ * Example:
+ *   Row 2, Column 1 → bit (2*4+1) = bit 9
+ */
 uint16_t scan_keypad(void)
 {
     uint8_t row, col;
     uint16_t key_state = 0;
 
+    /* Loop through each row */
     for (row = 0; row < MAX_GPIOS; row++)
     {
-        /* 1. Set all rows HIGH */
+        /* Step 1: Set all rows HIGH (inactive) */
         for (uint8_t r = 0; r < MAX_GPIOS; r++)
+        {
             set_gpio(OUTPUT_PORT, r, 1);
+        }
 
-        /* 2. Drive current row LOW */
+        /* Step 2: Drive current row LOW (active row) */
         set_gpio(OUTPUT_PORT, row, 0);
 
-        /* Small delay for signal settle */
+        /* Small delay to allow signals to settle */
         delay_us(5);
 
-        /* 3. Read all columns */
+        /* Step 3: Read all column inputs */
         for (col = 0; col < MAX_GPIOS; col++)
         {
-            if (gpio_read(INPUT_PORT, col) == 0)  // Active LOW
+            /* Active LOW: if column reads 0, key is pressed */
+            if (gpio_read(INPUT_PORT, col) == 0)
             {
-                /* Store position in 16-bit mask */
+                /* Set corresponding bit in key_state */
                 key_state |= (1 << (row * MAX_GPIOS + col));
             }
         }

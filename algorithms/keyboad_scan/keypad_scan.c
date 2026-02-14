@@ -1,6 +1,7 @@
 /*
  * A 4×4 matrix keyboard (keypad) scan with 2 ports, each having 4 GPIO pins, is a standard way to read 16 keys using only 8 microcontroller pins.
- * 🔷 Hardware Configuration
+ * 
+ * Hardware Configuration
  * Divide the keypad into:
  * 4 Rows → Connected to Port A (4 GPIOs)
  * 4 Columns → Connected to Port B (4 GPIOs)
@@ -29,7 +30,8 @@
  *   { '7', '8', '9', 'A' },
  *   { 'B', 'C', 'D', 'E' }
  * };
- * 🔷 Basic Working Principle
+ * 
+ * Basic Working Principle
  * Rows → Outputs
  * Columns → Inputs with pull-up resistors
  * Only one row is driven LOW at a time. Columns are read to see if any key in that row is pressed.
@@ -37,22 +39,20 @@
  * It connects the active row to a column.
  * That column input becomes LOW.
  * The row & column number identifies the key.
- * 🔷 Scanning Algorithm (Step-by-Step)
- * 1️⃣ Initialization
+ * Scanning Algorithm (Step-by-Step)
+ * Initialization
  * Text
- * Copy code
  * PortA (Rows)  → Output
  * PortB (Cols)  → Input with Pull-ups enabled
- * 2️⃣ Scan Process
+ * 
+ * Scan Process
  * For each row:
  * Set all rows HIGH
  * Drive one row LOW
  * Read column inputs
  * If any column reads LOW → Key detected
  * Move to next row
- * 🔷 Example Scan Logic (Pseudo Code)
- * C
- * Copy code
+ * Example Scan Logic (Pseudo code)
  * for(row = 0; row < 4; row++)
  * { 
  *   Set all rows HIGH
@@ -68,18 +68,19 @@
  *       key = lookup_table[row][col]
  *   }
  *}
- * 🔷 Important Design Notes
- * ✅ Debouncing
+ * 
+ * Important Design Notes
+ * Debouncing
  * Mechanical keys bounce for ~5–20 ms. Add:
  * Software delay (~10–20 ms), OR
  * State confirmation (read twice)
- * ✅ Ghosting Problem
+ * Ghosting Problem
  * If multiple keys are pressed simultaneously, false detection may occur. Solution:
  * Add diodes in series with each key (for true N-key rollover)
- * ✅ Scan Speed
+ * Scan Speed
  * Typical scan loop:
  * Every 5–20 ms
- * 🔷 Electrical Summary
+ * Electrical Summary
  * Total GPIO used: 8
  * Rows → Output push-pull
  * Columns → Input pull-up

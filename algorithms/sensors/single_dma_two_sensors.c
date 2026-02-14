@@ -9,7 +9,7 @@
 /**
  * Design options:
  * 3 threads:
- * 1) DMA thread: Highest priority DMA threads which moves data written by sensors to 2 separate rings buffers
+ * 1) DMA thread (Serializer): Highest priority DMA threads which moves data written by sensors to 2 separate rings buffers
  * 2) RT thread: High priority threads which processes real time sensor
  * 3) Non-RT thread: Low priority thread which processes non real time sensor on best effort basis.
  *

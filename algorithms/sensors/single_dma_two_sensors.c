@@ -50,3 +50,18 @@
  * d) Latency Goal: < 5 ms vs N/A
  * e) Buffer Strategy:  Small, Fixed-Latency Large vs Overflow-tolerant
  */
+
+/**
+ * Why the 3-Thread Design is optimal for both single core and multi core
+ * ​1. Determinism vs. Blocking
+​ * In a 2-thread + Mutex model, if the Low-Priority (Non-RT) thread is currently calling the DMA API to move its large (5x) data chunk, it will hold the mutex. If the RT sensor fires during this time, the High-Priority RT thread will be blocked waiting for the mutex.
+​ * Even though the RT thread is higher priority, it is now "at the mercy" of how long the Non-RT thread takes to finish its DMA call. This makes your 5 ms deadline unpredictable.
+ * ​2. The "Serializer" Advantage
+​ * In your 3-thread design, the DMA Thread acts as a Hardware Proxy.
+ * ​The RT and Non-RT threads never compete for the DMA API.
+ * ​They only interact with their respective Ring Buffers.
+ * ​Since the DMA thread is the highest priority, it can preempt the Non-RT thread instantly to service the RT sensor.*
+ *
+ * ​Stick with the 3-thread design. It is a professional-grade architecture for mixed-criticality systems. It keeps your real-time logic isolated from the "heavy lifting" of the non-real-time data.
+ *
+ */

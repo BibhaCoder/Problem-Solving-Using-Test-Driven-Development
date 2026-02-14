@@ -53,8 +53,8 @@
  * If any column reads LOW → Key detected
  * Move to next row
  * Example Scan Logic (Pseudo code)
- * for(row = 0; row < 4; row++)
- * { 
+ * 
+ * for(row = 0; row < 4; row++) { 
  *   Set all rows HIGH
  *   Set current row LOW
  *   
@@ -62,12 +62,11 @@
  *   
  *   col = Read columns
  *   
- *  if(col != 0x0F)   // if any column LOW
- *   {
- *      determine which column is LOW
+ *  if(col != 0x0F)   {
+ *       /* determine which column is LOW */
  *       key = lookup_table[row][col]
  *   }
- *}
+ * }
  * 
  * Important Design Notes
  * Debouncing

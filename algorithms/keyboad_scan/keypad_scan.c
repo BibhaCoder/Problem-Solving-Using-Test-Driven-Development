@@ -125,9 +125,7 @@ uint16_t scan_keypad(void)
     {
         /* Step 1: Set all rows HIGH (inactive) */
         for (uint8_t r = 0; r < MAX_GPIOS; r++)
-        {
             set_gpio(OUTPUT_PORT, r, 1);
-        }
 
         /* Step 2: Drive current row LOW (active row) */
         set_gpio(OUTPUT_PORT, row, 0);
@@ -136,11 +134,9 @@ uint16_t scan_keypad(void)
         delay_us(5);
 
         /* Step 3: Read all column inputs */
-        for (col = 0; col < MAX_GPIOS; col++)
-        {
+        for (col = 0; col < MAX_GPIOS; col++) {
             /* Active LOW: if column reads 0, key is pressed */
-            if (gpio_read(INPUT_PORT, col) == 0)
-            {
+            if (gpio_read(INPUT_PORT, col) == 0) {
                 /* Set corresponding bit in key_state */
                 key_state |= (1 << (row * MAX_GPIOS + col));
             }

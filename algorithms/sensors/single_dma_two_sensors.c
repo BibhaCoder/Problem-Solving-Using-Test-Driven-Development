@@ -62,6 +62,7 @@
  * ​They only interact with their respective Ring Buffers.
  * ​Since the DMA thread is the highest priority, it can preempt the Non-RT thread instantly to service the RT sensor.*
  *
- * ​Stick with the 3-thread design. It is a professional-grade architecture for mixed-criticality systems. It keeps your real-time logic isolated from the "heavy lifting" of the non-real-time data.
+ * ​Best optimal design option:
+ * 3-thread design. It is a professional-grade architecture for mixed-criticality systems. It keeps real-time logic isolated from the "heavy lifting" of the non-real-time data.
  *
  */

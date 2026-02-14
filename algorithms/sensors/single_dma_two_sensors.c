@@ -48,7 +48,7 @@
  * b) Priority: High (Immediate) vs Low (Best Effort)
  * c) Data Volume: 1x vs 5x
  * d) Latency Goal: < 5 ms vs N/A
- * e) Buffer Strategy:  Small, Fixed-Latency Large vs Overflow-tolerant
+ * e) Ring buffer Strategy:  Small, Fixed-Latency Large vs Overflow-tolerant
  */
 
 /**

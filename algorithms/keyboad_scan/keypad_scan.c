@@ -108,3 +108,41 @@
  *
  * uint16_t data style is good enough to store all 16 inputs
 */
+
+#define MAX_GPIOS (4)
+
+enum port {
+    INPUT_PORT,
+    OUTPUT_PORT,
+};
+
+uint16_t scan_keypad(void)
+{
+    uint8_t row, col;
+    uint16_t key_state = 0;
+
+    for (row = 0; row < MAX_GPIOS; row++)
+    {
+        /* 1. Set all rows HIGH */
+        for (uint8_t r = 0; r < MAX_GPIOS; r++)
+            set_gpio(OUTPUT_PORT, r, 1);
+
+        /* 2. Drive current row LOW */
+        set_gpio(OUTPUT_PORT, row, 0);
+
+        /* Small delay for signal settle */
+        delay_us(5);
+
+        /* 3. Read all columns */
+        for (col = 0; col < MAX_GPIOS; col++)
+        {
+            if (gpio_read(INPUT_PORT, col) == 0)  // Active LOW
+            {
+                /* Store position in 16-bit mask */
+                key_state |= (1 << (row * MAX_GPIOS + col));
+            }
+        }
+    }
+
+    return key_state;
+}

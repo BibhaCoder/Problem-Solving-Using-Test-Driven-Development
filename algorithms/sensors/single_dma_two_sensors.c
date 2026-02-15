@@ -1,5 +1,8 @@
 /**
- * 1 single DMA non thread safe API
+ * 1 single DMA non thread safe API. Sensors can only generate interrupt per packet and if the packet is not
+ * copied on per interrupt it will be lost so NAPI kind of batching is not possible. Sensors device only supports
+ * per packet per interrupt.
+ *
  * 2 sensors:
  * 1) One real-time sensors which has hard real time scheduling requirements (less than 5 ms)
  * 2) Second non real-time sensor which does not real time scheduling constraints but generates 5 times mote data
@@ -9,7 +12,7 @@
 /**
  * Design options:
  * 3 threads:
- * 1) DMA thread (Serializer): Highest priority DMA threads which moves data written by sensors to 2 separate rings buffers
+ * 1) DMA thread (Serializer): Highest priority DMA threads which moves data written by sensors to 2 separate rings buffers in real time whenever device generates interrupt
  * 2) RT thread: High priority threads which processes real time sensor
  * 3) Non-RT thread: Low priority thread which processes non real time sensor on best effort basis.
  *

@@ -10,11 +10,20 @@
  */
 
 /**
- * Design options:
+ * Design option 1:
  * 3 threads:
  * 1) DMA thread (Serializer): Highest priority DMA threads which moves data written by sensors to 2 separate rings buffers in real time whenever device generates interrupt
  * 2) RT thread: High priority threads which processes real time sensor
  * 3) Non-RT thread: Low priority thread which processes non real time sensor on best effort basis.
+ *
+ * Design option 2:
+ * 2 threads:
+ * 1) RT thread: High priority thread to process RT sensor and RT thread is also the only caller and Serializer of DMA API.
+ * 2) Non- RT thread: This is scheduled by RT thread and processes non RT sensor.
+ * 3) Biggest challenge is both RT and non-RT sensors can generate data while RT thread is blocked processing RT sensor.
+ *    And if sensor interrupts are not processed data will be lost.
+ * 4) Top half or the IRQ handler can act as DMA Serializer and copy data to RT and non RT ring buffers but it will increase top half (IRQ handler load)
+ *     which can slow down the system abd hence its not a good design.
  *
  * Sensor devices are very simple and can only generate per packet interrupt amd if the interrupt is not processsed sensor data will.be lost.
  * Sensor devices do not support writing into ring buffer and interrupt batch like NAPI (1 interrupt to process N packets).

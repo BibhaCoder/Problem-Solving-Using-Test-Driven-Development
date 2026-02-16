@@ -61,7 +61,7 @@
  */
 
 /**
- * Why the 3-Thread Design is optimal for both single core and multi core
+ * Why design option 1 (3-Thread Design) is optimal for both single core and multi core
  * 
  * ​1. Determinism vs. Blocking
 ​ * In a 2-thread + Mutex model, if the Low-Priority (Non-RT) thread is currently calling the DMA API to move its large (5x) data chunk, it will hold the mutex. If the RT sensor fires during this time, the High-Priority RT thread will be blocked waiting for the mutex.

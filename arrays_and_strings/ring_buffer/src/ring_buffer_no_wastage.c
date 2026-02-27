@@ -22,8 +22,8 @@ int dequeue(int *out_val)
 	if (!count)
 		return -1;
 
-	increment_pointer(&read_pointer);
 	*out_val = ring_buffer[read_pointer];
+	increment_pointer(&read_pointer);
 	count--;
 
 	return 0;

@@ -7,9 +7,9 @@
 #include <stddef.h>
 
 static int ring_buffer[MAX_RING_BUFFER_SIZE];
-static size_t read_pointer = 0;
-static size_t write_pointer = 1;
-static size_t count = 0;
+static size_t read_pointer;
+static size_t write_pointer;
+static size_t count;
 
 static void increment_pointer(size_t *pointer)
 {
